@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".AddRemActivity"
+    >
+
+    <include layout="@layout/app_bar"
+        android:id="@+id/toolbar"/>
+
+    <Button
+        android:id="@+id/addRemButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/fab_margin"
+        android:textSize="20dp"
+        android:text="Add Rem"
+        android:layout_margin="20dp"
+        android:layout_alignParentBottom="true"/>
+
+    <EditText
+        android:id="@+id/editTextRemName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="12dp"
+        android:layout_marginHorizontal="20dp"
+        android:inputType="textPersonName"
+        android:text="RemName" />
+
+    <EditText
+        android:id="@+id/editTextIdNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextRemName"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="12dp"
+        android:inputType="number"
+        android:text="IdNumber" />
+
+</RelativeLayout>
