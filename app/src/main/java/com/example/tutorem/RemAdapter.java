@@ -9,11 +9,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RemAdapter extends RecyclerView.Adapter<RemAdapter.ViewHolder> {
     private static final String TAG = "CustomAdapter";
-    private Context context;
+    private MainActivity context;
     private Rem[] mDataSet;
 
     // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
@@ -46,7 +47,7 @@ public class RemAdapter extends RecyclerView.Adapter<RemAdapter.ViewHolder> {
      *
      * @param dataSet String[] containing the data to populate views to be used by RecyclerView.
      */
-    public RemAdapter(Rem[] dataSet,Context context) {
+    public RemAdapter(Rem[] dataSet,MainActivity context) {
         mDataSet = dataSet;
         this.context = context;
     }

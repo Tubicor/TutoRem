@@ -20,7 +20,7 @@ public class RecyclerViewFragment extends Fragment {
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     private static final int SPAN_COUNT = 2;
     private static final int DATASET_COUNT = 20;
-    Context context;
+    MainActivity context;
 
     private enum LayoutManagerType {
         GRID_LAYOUT_MANAGER,
@@ -37,7 +37,7 @@ public class RecyclerViewFragment extends Fragment {
     protected RecyclerView.LayoutManager mLayoutManager;
     protected Rem[] mDataset;
 
-    public RecyclerViewFragment(Context context){
+    public RecyclerViewFragment(MainActivity context){
         super();
         this.context = context;
     }
