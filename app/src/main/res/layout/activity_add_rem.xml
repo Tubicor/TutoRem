@@ -1,44 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".AddRemActivity"
+    tools:context=".AddRemActivity">
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
     >
 
     <include layout="@layout/app_bar"
         android:id="@+id/toolbar"/>
 
-    <Button
-        android:id="@+id/addRemButton"
+    <ViewFlipper
+        android:id="@+id/view_flipper"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="@dimen/fab_margin"
-        android:textSize="20dp"
-        android:text="Add Rem"
-        android:layout_margin="20dp"
-        android:layout_alignParentBottom="true"/>
-
-    <EditText
-        android:id="@+id/editTextRemName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
-        android:layout_marginTop="12dp"
-        android:layout_marginHorizontal="20dp"
-        android:inputType="textPersonName"
-        android:text="RemName" />
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/editTextIdNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextRemName"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="12dp"
-        android:inputType="number"
-        android:text="IdNumber" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="40dp"
+                android:textColor="@color/black"
+                android:text="Hello dear User.\nPlease think of a name for the Habit or Skill you want to learn. This so called REM will be your helper to reach your own set Goal."
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/editTextRemName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:textSize="30sp"
+                android:layout_marginTop="10dp"
+                android:hint="REMName"
+                android:textColor="@color/black"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="10dp"
+                android:text="Next"
+                android:textSize="30dp"
+                android:layout_gravity="right"
+                android:onClick="nextView"
+                ></Button>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="50dp"
+                android:paddingLeft="30dp"
+                android:textColor="@color/grey"
+                android:text="If you have not have any idea yet or a good name here are some examples:\n
+ - Juggeling\n
+ - Reduce Time on SocialMedia\n
+ - Read a Book"
+                android:textSize="20sp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="40dp"
+                android:textColor="@color/black"
+                android:text="Well Done!\nNow you are probably wondering how this is going to work.\nYour REM will remind you to follow your set goal. Everytime you get reminded you will be encouraged rate your progress."
+                android:textSize="30sp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="10dp"
+                android:text="Next"
+                android:textSize="30dp"
+                android:layout_gravity="right"
+                android:onClick="nextView"
+                ></Button>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="50dp"
+                android:paddingLeft="30dp"
+                android:textColor="@color/grey"
+                android:text="Here is an short Example:\nLets say you want to read a book. Your Rem reminds you every evening to evaluate your progress.So that even if you havent done it to that time you can still do it and rate yourself afterwards."
+                android:textSize="20sp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="40dp"
+                android:text="Perfect.\nYour REM only needs to know when you want to be reminded and how often. So first in which interval of days do you want to be reminded:"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="every "
+                    android:textSize="25sp"></TextView>
+                <EditText
+                    android:textColor="@color/black"
+                    android:id="@+id/editTextTimeInterval"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    ></EditText>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Days"
+                    android:textSize="25sp"></TextView>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="40dp"
+                android:text="Last but not least, when on that days do you want to be reminded:"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/timeLayout">
+                <com.example.tutorem.TimeEditText
+                    android:id="@+id/timeEditTextTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="35sp"
+                    android:gravity="center"
+                    android:hint="18:00"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="10dp"
+                android:onClick="nextView"
+                android:text="Next"
+                android:textSize="30dp"></Button>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="40dp"
+                android:text="Congratulations. You are about to finish the Creation of a new REM. Keep in mind, that you can always postpone your reminder if it does not fit your schedule. But for now have fun with improving yourself!"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="10dp"
+                android:onClick="createRem"
+                android:text="Create REM"
+                android:textSize="30dp"></Button>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ViewFlipper>
+
 
 </RelativeLayout>
+</ScrollView>
