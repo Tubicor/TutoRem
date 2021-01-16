@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context=".AddRemActivity">
 
+    <include layout="@layout/toolbar"></include>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    >
-
-    <include layout="@layout/app_bar"
-        android:id="@+id/toolbar"/>
-
-    <ViewFlipper
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+        <ViewFlipper
         android:id="@+id/view_flipper"
         android:layout_width="match_parent"
         android:layout_below="@+id/toolbar"
@@ -210,7 +206,6 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </ViewFlipper>
+    </androidx.core.widget.NestedScrollView>
 
-
-</RelativeLayout>
-</ScrollView>
+</LinearLayout>
