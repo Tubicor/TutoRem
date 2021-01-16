@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tutorem.Instrumentation.JSONHandler;
+
 import java.nio.charset.Charset;
 import java.util.Random;
 
@@ -35,7 +37,7 @@ public class RecyclerViewFragment extends Fragment {
     protected RecyclerView mRecyclerView;
     protected RemAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
-    protected Rem[] mDataset;
+    protected JSONHandler.activity[] mDataset;
 
     public RecyclerViewFragment(MainActivity context){
         super();
@@ -48,7 +50,11 @@ public class RecyclerViewFragment extends Fragment {
 
         // Initialize dataset, this data would usually come from a local content provider or
         // remote server.
-        initDataset();
+        JSONHandler jsonHandler = new JSONHandler(context);
+        if(!jsonHandler.activityList.isEmpty())
+            this.mDataset = jsonHandler.activityList.toArray(mDataset);
+        else
+            this.mDataset = new JSONHandler.activity[0];
     }
 
     @Override
@@ -130,13 +136,4 @@ public class RecyclerViewFragment extends Fragment {
      * Generates Strings for RecyclerView's adapter. This data would usually come
      * from a local content provider or remote server.
      */
-    private void initDataset() {
-        mDataset = new Rem[DATASET_COUNT];
-        for (int i = 0; i < DATASET_COUNT; i++) {
-            byte[] array = new byte[7]; // length is bounded by 7
-            new Random().nextBytes(array);
-            String generatedString = new String(array, Charset.forName("UTF-8"));
-            mDataset[i] = new Rem(generatedString,i);
-        }
-    }
 }

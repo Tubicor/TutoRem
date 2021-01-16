@@ -12,10 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tutorem.Instrumentation.JSONHandler;
+
 public class RemAdapter extends RecyclerView.Adapter<RemAdapter.ViewHolder> {
     private static final String TAG = "CustomAdapter";
     private MainActivity context;
-    private Rem[] mDataSet;
+    private JSONHandler.activity[] mDataSet;
 
     // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
     /**
@@ -47,7 +49,7 @@ public class RemAdapter extends RecyclerView.Adapter<RemAdapter.ViewHolder> {
      *
      * @param dataSet String[] containing the data to populate views to be used by RecyclerView.
      */
-    public RemAdapter(Rem[] dataSet,MainActivity context) {
+    public RemAdapter(JSONHandler.activity[] dataSet,MainActivity context) {
         mDataSet = dataSet;
         this.context = context;
     }
@@ -74,7 +76,7 @@ public class RemAdapter extends RecyclerView.Adapter<RemAdapter.ViewHolder> {
 
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
-        viewHolder.getTextView().setText(mDataSet[position].toString());
+        viewHolder.getTextView().setText(mDataSet[position].name+""+mDataSet[position].startDate);
     }
     // END_INCLUDE(recyclerViewOnBindViewHolder)
 

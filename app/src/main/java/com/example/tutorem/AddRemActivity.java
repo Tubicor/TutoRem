@@ -5,14 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
+
+import com.example.tutorem.Instrumentation.JSONHandler;
 
 public class AddRemActivity extends AppCompatActivity {
     ViewFlipper viewFlipper;
@@ -56,6 +56,7 @@ public class AddRemActivity extends AppCompatActivity {
     public void createRem(View v){
         String remName = editTextRemName.getText().toString();
         String dayInterval = editTextTimeInterval.getText().toString();
+        /*
         if(remName == null || remName.isEmpty()){
             editTextRemName.setHintTextColor(Color.RED);
             editTextRemName.setHint("Missing Rem Name");
@@ -74,9 +75,24 @@ public class AddRemActivity extends AppCompatActivity {
             this.askForTime = true;
             viewFlipper.setDisplayedChild(2);
         }else{
-            //save Rem
-            finish();
-        }
+            */
+            JSONHandler jsonHandler = new JSONHandler(this);
+            JSONHandler.activity activity = new JSONHandler.activity();
+        //activity.set("name",remName);
+        activity.set("name","asdfds");
+        //activity.set("intervalValue",dayInterval);
+        activity.set("intervalValue","1");
+        //activity.set("intervalHour",timeEditTextTime.getHour()+""+timeEditTextTime.getMinutes());
+        activity.set("intervalHour","11");
+            activity.set("notes","These are notes");//TODO
+            activity.set("startDate","TODAY");//TODO
+            activity.set("endDate","SomeTime");//TODO
+            activity.set("id","1");//TODO
+
+            jsonHandler.addActivity(activity);
+            jsonHandler.saveData();
+            //finish();
+        //}
 
     }
 }
