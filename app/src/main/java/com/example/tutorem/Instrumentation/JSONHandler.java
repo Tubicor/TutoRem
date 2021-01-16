@@ -44,7 +44,6 @@ public class JSONHandler
             {
                 jsonFile+=myReader.nextLine();
             }
-            jsonFile = jsonFile.substring(1,jsonFile.length()-1);
             Log.d("JSONHANDLER",jsonFile);
             myReader.close();
 
@@ -319,7 +318,7 @@ public class JSONHandler
                 j_activities.put(j_activity);
             }
             FileWriter writer = new FileWriter(this.context.getFileStreamPath(path));
-            writer.write(j_activities.toString());
+            writer.write("{"+j_activities.toString()+"}");
             writer.close();
         }
         catch(JSONException e)
