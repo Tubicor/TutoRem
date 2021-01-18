@@ -27,13 +27,14 @@ public class ToolbarSetter {
         final CollapsingToolbarLayout collapsingToolbarLayout = context.findViewById(R.id.toolbar_layout);
         context.getSupportActionBar().setDisplayHomeAsUpEnabled(backbutton);
         collapsingToolbarLayout.setTitle(title);
+        collapsingToolbarLayout.setExpandedTitleColor(context.getColor(R.color.yellowREM));
         AppBarLayout appBarLayout = context.findViewById(R.id.app_bar);
         if(!expandable) {
             ViewGroup.LayoutParams params = appBarLayout.getLayoutParams();
             params.height = toolbar.getLayoutParams().height;
             appBarLayout.setLayoutParams(params);
-            appBarLayout.setExpanded(true, false);
-            appBarLayout.setBackgroundColor(context.getResources().getColor(R.color.yellowREM));
+            appBarLayout.setExpanded(false, true);
+            collapsingToolbarLayout.setBackgroundColor(context.getColor(R.color.yellowREM));
         }
         else {
             appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
@@ -46,6 +47,8 @@ public class ToolbarSetter {
                     }
                     if (scrollRange + verticalOffset == 0) {
                         collapsingToolbarLayout.setTitle("");
+
+                        appBarLayout.setBackgroundColor(context.getResources().getColor(R.color.yellowREM));
                     } else {
                         collapsingToolbarLayout.setTitle(title);
                     }

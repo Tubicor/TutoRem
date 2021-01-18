@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tutorem.Instrumentation.Converter;
 import com.example.tutorem.Instrumentation.JSONHandler;
 
 public class RemAdapter extends RecyclerView.Adapter<RemAdapter.ViewHolder> {
@@ -24,22 +25,34 @@ public class RemAdapter extends RecyclerView.Adapter<RemAdapter.ViewHolder> {
      * Provide a reference to the type of views that you are using (custom ViewHolder)
      */
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textView;
-
+        private final TextView remDescription;
+        private final TextView remName;
+        private JSONHandler.activity activity;
         public ViewHolder(View v) {
             super(v);
             // Define click listener for the ViewHolder's View.
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    context.startActivity(new Intent(context,ShowRemActivity.class));
+                    Intent intent = new Intent(context,ShowRemActivity.class);
+                    intent.putExtra("id",activity.id);
+                    context.startActivity(intent);
                 }
             });
-            textView = (TextView) v.findViewById(R.id.textView);
+            remDescription = (TextView) v.findViewById(R.id.remDescription);
+            remName = (TextView) v.findViewById(R.id.remName);
         }
 
-        public TextView getTextView() {
-            return textView;
+        public TextView getRemDescription() {
+            return remDescription;
+        }
+
+        public TextView getRemName() {
+            return remName;
+        }
+
+        public void setActivity(JSONHandler.activity activity) {
+            this.activity = activity;
         }
     }
     // END_INCLUDE(recyclerViewSampleViewHolder)
@@ -76,7 +89,9 @@ public class RemAdapter extends RecyclerView.Adapter<RemAdapter.ViewHolder> {
 
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
-        viewHolder.getTextView().setText(mDataSet[position].name+""+mDataSet[position].startDate);
+        viewHolder.getRemName().setText(mDataSet[position].name);
+        viewHolder.getRemDescription().setText("Next Planned Session: "+ Converter.dateToReadableString(mDataSet[position].nextNotiDate));
+        viewHolder.setActivity(mDataSet[position]);
     }
     // END_INCLUDE(recyclerViewOnBindViewHolder)
 

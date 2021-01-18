@@ -20,18 +20,26 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.example.tutorem.Instrumentation.JSONHandler;
+
+import java.util.List;
+
 
 public class Util extends JobService {
     private static final String CHANNEL_ID = "TutoRem";
     //both in secounds
-    private static final int SCHEDULEINTERVAL = 2; //After rescheduling the amount of time to pass before the next call
-    private static final int SCHEDULESTART = 1; //Start of Timeinterval for first call
+    private static final int SCHEDULEINTERVAL = 2*60; //After rescheduling the amount of time to pass before the next call
+    private static final int SCHEDULESTART = 1*60; //Start of Timeinterval for first call
 
     @Override
     public boolean onStartJob(JobParameters params) {
-        Log.e("Util","onStartJob");
-        addNotification();
-        Util.scheduleJob(getApplicationContext());
+        Log.d("Util","onStartJob");
+        JSONHandler jsonHandler = new JSONHandler(this);
+        List<JSONHandler.activity> activities = jsonHandler.getNextActivity(true);
+        if(!activities.isEmpty()) {
+            addNotification(activities.get(0));
+        }
+        Util.scheduleJob(this);
         return false;
     }
 
@@ -41,15 +49,16 @@ public class Util extends JobService {
     }
 
 
-    private void addNotification(){
+    private void addNotification(JSONHandler.activity ac){
         //createNotificationChannel(activity);
-        Intent intent = new Intent(this,AddRemActivity.class); // TODO right intent with proper name
+        Intent intent = new Intent(this,ShowRemActivity.class);
+        intent.putExtra("id",ac.id);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this,CHANNEL_ID)
-                .setSmallIcon(R.drawable.icon)
-                .setContentTitle("This is the ContentTitle")
-                .setContentText("This is the ContentText")
+                .setSmallIcon(R.drawable.ic_tutorem_green)
+                .setContentTitle("REM : "+ac.name)
+                .setContentText("Your REM is due at "+(int)ac.intervalHour/100+":"+ac.intervalHour%100)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
@@ -71,6 +80,7 @@ public class Util extends JobService {
 
     }
     public static void scheduleJob(Context context){
+        Log.d("UTIL","schedule Job");
         ComponentName serviceComponent = new ComponentName(context, Util.class);
         JobInfo.Builder builder = new JobInfo.Builder(0,serviceComponent);
         builder.setMinimumLatency(SCHEDULESTART * 1000); // wait at least

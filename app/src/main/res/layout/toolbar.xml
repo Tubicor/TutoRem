@@ -16,7 +16,8 @@
         app:contentScrim="@color/yellowREM"
         android:background="@color/black"
         app:layout_scrollFlags="scroll|exitUntilCollapsed"
-        app:toolbarId="@+id/toolbar">
+        app:toolbarId="@+id/toolbar"
+        app:maxLines="2">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"

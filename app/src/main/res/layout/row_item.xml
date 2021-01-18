@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="72dp"
+    android:layout_height="wrap_content"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     android:gravity="center_vertical"
-    android:background="@color/purple_200">
+    android:background="@color/yellowREM"
+    android:layout_margin="3dp"
+    android:padding="6dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/remName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textSize="25dp"
+            android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/remDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Element"
+            android:textSize="20dp"/>
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Element"/>
 </FrameLayout>

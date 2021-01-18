@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
-
+    android:background="@color/greenREM">
     <include layout="@layout/toolbar"></include>
     <include layout="@layout/scrolling_fragment_view"></include>
 
@@ -15,7 +14,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:clickable="true"
-        android:contentDescription="TODO"
-        app:srcCompat="@android:drawable/ic_notification_overlay" />
+        android:src="@drawable/ic_baseline_add_24"
+        app:maxImageSize="56dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

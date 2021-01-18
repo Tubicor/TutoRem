@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.example.tutorem.Instrumentation.JSONHandler;
+
+import java.util.Calendar;
 
 public class AddRemActivity extends AppCompatActivity {
     ViewFlipper viewFlipper;
@@ -26,7 +29,7 @@ public class AddRemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_rem);
-        toolbarSetter = new ToolbarSetter(false,"",this,true);
+        toolbarSetter = new ToolbarSetter(false,"linearLayout",this,true);
 
 
         viewFlipper = findViewById(R.id.view_flipper);
@@ -53,10 +56,11 @@ public class AddRemActivity extends AppCompatActivity {
     public void nextView(View v){
         viewFlipper.showNext();
     }
+
     public void createRem(View v){
         String remName = editTextRemName.getText().toString();
         String dayInterval = editTextTimeInterval.getText().toString();
-        /*
+
         if(remName == null || remName.isEmpty()){
             editTextRemName.setHintTextColor(Color.RED);
             editTextRemName.setHint("Missing Rem Name");
@@ -75,24 +79,23 @@ public class AddRemActivity extends AppCompatActivity {
             this.askForTime = true;
             viewFlipper.setDisplayedChild(2);
         }else{
-            */
+
             JSONHandler jsonHandler = new JSONHandler(this);
             JSONHandler.activity activity = new JSONHandler.activity();
-        //activity.set("name",remName);
-        activity.set("name","asdfds");
-        //activity.set("intervalValue",dayInterval);
-        activity.set("intervalValue","1");
-        //activity.set("intervalHour",timeEditTextTime.getHour()+""+timeEditTextTime.getMinutes());
-        activity.set("intervalHour","11");
-            activity.set("notes","These are notes");//TODO
-            activity.set("startDate","TODAY");//TODO
-            activity.set("endDate","SomeTime");//TODO
-            activity.set("id","1");//TODO
+            activity.setName(remName);
+            activity.setIntervalValue(Integer.parseInt(dayInterval));
+            activity.setIntervalHour(timeEditTextTime.getHour()+timeEditTextTime.getMinutes());
+            activity.setNotes("These are notes");//TODO
+            activity.setStartDate(Calendar.getInstance().getTime());
+            activity.setEndDate(Calendar.getInstance().getTime());//TODO
+            activity.refreshNextNotification();
+            activity.setId(""+jsonHandler.getNextID());
 
+            Log.d("ADDREM","Rem with id"+jsonHandler.getNextID());
             jsonHandler.addActivity(activity);
             jsonHandler.saveData();
-            //finish();
-        //}
+            finish();
+        }
 
     }
 }

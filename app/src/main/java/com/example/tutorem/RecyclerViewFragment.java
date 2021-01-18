@@ -51,10 +51,13 @@ public class RecyclerViewFragment extends Fragment {
         // Initialize dataset, this data would usually come from a local content provider or
         // remote server.
         JSONHandler jsonHandler = new JSONHandler(context);
-        if(!jsonHandler.activityList.isEmpty())
+        if(!jsonHandler.activityList.isEmpty()) {
+            this.mDataset = new JSONHandler.activity[jsonHandler.activityList.size()];
             this.mDataset = jsonHandler.activityList.toArray(mDataset);
-        else
+        }
+        else{
             this.mDataset = new JSONHandler.activity[0];
+        }
     }
 
     @Override
