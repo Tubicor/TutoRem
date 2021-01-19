@@ -101,7 +101,7 @@ public class JSONHandler
         Date now = Calendar.getInstance().getTime();
         for(activity ac: this.activityList){
             Date acDate;
-            if(withHour) {
+            if(false) {
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(ac.nextNotiDate);
                 calendar.add(Calendar.HOUR, (int) ac.intervalHour / 100);

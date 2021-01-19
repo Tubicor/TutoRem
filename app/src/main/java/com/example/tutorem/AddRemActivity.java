@@ -84,7 +84,7 @@ public class AddRemActivity extends AppCompatActivity {
             JSONHandler.activity activity = new JSONHandler.activity();
             activity.setName(remName);
             activity.setIntervalValue(Integer.parseInt(dayInterval));
-            activity.setIntervalHour(timeEditTextTime.getHour()+timeEditTextTime.getMinutes());
+            activity.setIntervalHour(timeEditTextTime.getHour()*100+timeEditTextTime.getMinutes());
             activity.setNotes("These are notes");//TODO
             activity.setStartDate(Calendar.getInstance().getTime());
             activity.setEndDate(Calendar.getInstance().getTime());//TODO
